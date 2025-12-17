@@ -107,13 +107,6 @@ classdef Calculations
             end
             G = (F + R) + obj.DragForce(v) - obj.ConstantVars.M * d;
         end
-        
-    end
-
-    methods
-        function obj = Calculations()
-            obj.ConstantVars = Constants();
-        end
 
         function [F, R] = AxleNormals(obj, v, d)
             F = obj.FrontAxleDownforce(v) + obj.FrontAxleRestingMass() + obj.LoadTransfer(d) - obj.DragLoadTransfer(v);
@@ -202,6 +195,13 @@ classdef Calculations
                     d_peak = NaN;
                 end
             end
+        end
+        
+    end
+
+    methods
+        function obj = Calculations()
+            obj.ConstantVars = Constants();
         end
 
         function PlotAxleGripsVsDeceleration(obj, v, d_max)
